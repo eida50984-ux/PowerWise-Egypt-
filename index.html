@@ -156,32 +156,33 @@
 </div>
 
 <div class="meter-history">
-    <h3>سجل قراءات العداد</h3>
-
-    <table>
-        <thead>
-            <tr>
-                <th>تاريخ القراءة</th>
-                <th>القراءة (كيلو وات)</th>
-            </tr>
-        </thead>
-
-        <tbody id="meterHistory">
-            <tr>
-                <td colspan="2">لا توجد قراءات مسجلة حتى الآن</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-            </section>
-
-            <footer>
-                PowerWise Egypt © 2026 - جميع الحقوق محفوظة
-            </footer>
-
-        </main>
+    <div class="history-header">
+        <div>
+            <h3>سجل قراءات العداد</h3>
+            <p>جميع القراءات المسجلة وتواريخها</p>
+        </div>
+        <span class="history-count" id="historyCount">0 قراءة</span>
     </div>
 
+    <div class="history-table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>تاريخ ووقت القراءة</th>
+                    <th>القراءة</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+
+            <tbody id="meterHistory">
+                <tr>
+                    <td colspan="4">لا توجد قراءات مسجلة حتى الآن</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

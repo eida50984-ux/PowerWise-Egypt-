@@ -23,7 +23,7 @@
                 <a href="#" class="active">🏠 لوحة التحكم</a>
                 <a href="#">📊 استهلاك الكهرباء</a>
                 <a href="#">💳 الفواتير والمدفوعات</a>
-                <a href="#" id="meterButton">📷 قراءة العداد</a>
+                <a href="#">📷 قراءة العداد</a>
                 <a href="#">🤖 المساعد الذكي</a>
                 <a href="#">👤 الملف الشخصي</a>
             </nav>
@@ -148,10 +148,31 @@
                     <p>ارفع صورة العداد أو أدخل القراءة يدوياً.</p>
                 </div>
 
-                <div class="meter-actions">
-                    <button type="button">📷 رفع صورة العداد</button>
-                    <button type="button" class="secondary-btn">إدخال القراءة</button>
-                </div>
+               <div class="meter-actions">
+    <button type="button">📷 رفع صورة العداد</button>
+    <button type="button" class="secondary-btn" id="meterButton">
+        إدخال القراءة
+    </button>
+</div>
+
+<div class="meter-history">
+    <h3>سجل قراءات العداد</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>تاريخ القراءة</th>
+                <th>القراءة (كيلو وات)</th>
+            </tr>
+        </thead>
+
+        <tbody id="meterHistory">
+            <tr>
+                <td colspan="2">لا توجد قراءات مسجلة حتى الآن</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
             </section>
 
             <footer>

@@ -1,31 +1,42 @@
 // PowerWise Egypt
 
-// زر إدخال قراءة العداد
 const meterButton = document.querySelector("#meterButton");
+const usageValue = document.querySelector("#usageValue");
 
+// استرجاع آخر قراءة محفوظة عند فتح الموقع
+const savedReading = localStorage.getItem("meterReading");
+
+if (savedReading !== null && usageValue) {
+    usageValue.textContent = savedReading;
+}
+
+// إدخال قراءة جديدة
 if (meterButton) {
-    meterButton.addEventListener("click", function () {
+    meterButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
         const reading = prompt("من فضلك أدخل قراءة عداد الكهرباء:");
 
         if (reading === null || reading.trim() === "") {
-            alert("من فضلك أدخل قراءة صحيحة.");
             return;
         }
 
         const number = Number(reading);
 
         if (!Number.isFinite(number) || number < 0) {
-            alert("القراءة لازم تكون رقم صحيح أكبر من أو يساوي صفر.");
+            alert("من فضلك أدخل قراءة صحيحة.");
             return;
         }
 
-     const usageValue = document.querySelector("#usageValue");
+        // تحديث الرقم على لوحة التحكم
+        if (usageValue) {
+            usageValue.textContent = number;
+        }
 
-if (usageValue) {
-    usageValue.textContent = number;
-}
+        // حفظ القراءة في المتصفح
+        localStorage.setItem("meterReading", number);
 
-alert("تم تسجيل قراءة العداد: " + number + " كيلو وات ساعة");   
+        alert("تم حفظ قراءة العداد بنجاح: " + number);
     });
 }
 

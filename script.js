@@ -41,3 +41,39 @@ if (meterButton) {
 }
 
 console.log("PowerWise Egypt is running!");
+// سجل قراءات العداد
+let meterHistory = JSON.parse(
+    localStorage.getItem("meterHistory") || "[]"
+);
+
+const historyTable = document.querySelector("#meterHistory");
+
+// عرض القراءات المحفوظة
+function displayMeterHistory() {
+    if (!historyTable) return;
+
+    if (meterHistory.length === 0) {
+        historyTable.innerHTML = `
+            <tr>
+                <td colspan="2">لا توجد قراءات مسجلة حتى الآن</td>
+            </tr>
+        `;
+        return;
+    }
+
+    historyTable.innerHTML = "";
+
+    meterHistory.forEach(function (item) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${item.date}</td>
+            <td>${item.reading} كيلو وات</td>
+        `;
+
+        historyTable.appendChild(row);
+    });
+}
+
+// عرض السجل عند فتح الموقع
+displayMeterHistory();

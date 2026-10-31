@@ -20,10 +20,16 @@ if (savedReading !== null && usageValue) {
 function displayMeterHistory() {
     if (!historyTable) return;
 
+    const historyCount = document.querySelector("#historyCount");
+
+    if (historyCount) {
+        historyCount.textContent = meterHistory.length + " قراءة";
+    }
+
     if (meterHistory.length === 0) {
         historyTable.innerHTML = `
             <tr>
-                <td colspan="2">لا توجد قراءات مسجلة حتى الآن</td>
+                <td colspan="4">لا توجد قراءات مسجلة حتى الآن</td>
             </tr>
         `;
         return;
@@ -31,22 +37,19 @@ function displayMeterHistory() {
 
     historyTable.innerHTML = "";
 
-    meterHistory.forEach(function (item) {
+    meterHistory.forEach(function (item, index) {
         const row = document.createElement("tr");
 
-        const dateCell = document.createElement("td");
-        dateCell.textContent = item.date;
-
-        const readingCell = document.createElement("td");
-        readingCell.textContent = item.reading + " كيلو وات";
-
-        row.appendChild(dateCell);
-        row.appendChild(readingCell);
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.date}</td>
+            <td>${item.reading} كيلو وات</td>
+            <td><span class="reading-status">مسجلة</span></td>
+        `;
 
         historyTable.appendChild(row);
     });
 }
-
 // تسجيل قراءة جديدة
 if (meterButton) {
     meterButton.addEventListener("click", function (event) {

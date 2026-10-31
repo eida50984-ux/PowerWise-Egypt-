@@ -36,7 +36,21 @@ if (meterButton) {
         // حفظ القراءة في المتصفح
         localStorage.setItem("meterReading", number);
 
-        alert("تم حفظ قراءة العداد بنجاح: " + number);
+       // إضافة القراءة الجديدة للسجل
+const newReading = {
+    reading: number,
+    date: new Date().toLocaleString("ar-EG")
+};
+
+meterHistory.unshift(newReading);
+
+// الاحتفاظ بالقراءات في المتصفح
+localStorage.setItem("meterHistory", JSON.stringify(meterHistory));
+
+// تحديث السجل على الصفحة
+displayMeterHistory();
+
+alert("تم حفظ القراءة وإضافتها إلى السجل بنجاح!");
     });
 }
 

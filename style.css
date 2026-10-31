@@ -401,3 +401,86 @@ footer {
         flex-direction: column;
     }
 }
+/* Meter History Design */
+
+.meter-history {
+    margin-top: 25px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e8edf2;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.history-header h3 {
+    margin: 0 0 7px;
+    color: #172b4d;
+}
+
+.history-header p {
+    margin: 0;
+    color: #718096;
+    font-size: 13px;
+}
+
+.history-count {
+    background: #e8f7f0;
+    color: #16865b;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.meter-history table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+    min-width: 500px;
+}
+
+.meter-history th {
+    background: #f5f8fa;
+    color: #526174;
+    padding: 15px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.meter-history td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #edf0f3;
+    color: #344054;
+    font-size: 14px;
+}
+
+.meter-history tbody tr:hover {
+    background: #f8fbfa;
+}
+
+.meter-history tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .meter-history {
+        padding: 15px;
+    }
+
+    .history-header {
+        align-items: flex-start;
+    }
+}

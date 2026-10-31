@@ -19,7 +19,13 @@ if (meterButton) {
             return;
         }
 
-        alert("تم تسجيل قراءة العداد: " + number + " كيلو وات ساعة");
+     const usageValue = document.querySelector("#usageValue");
+
+if (usageValue) {
+    usageValue.textContent = number;
+}
+
+alert("تم تسجيل قراءة العداد: " + number + " كيلو وات ساعة");   
     });
 }
 

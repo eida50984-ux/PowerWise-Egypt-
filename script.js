@@ -1,17 +1,22 @@
 // PowerWise Egypt
 
 const meterButton = document.querySelector("#meterButton");
+const readingInput = document.querySelector("#meterReadingInput");
 const usageValue = document.querySelector("#usageValue");
 const historyTable = document.querySelector("#meterHistory");
+const historyCount = document.querySelector("#historyCount");
 
-// استرجاع البيانات المحفوظة
+const imageInput = document.querySelector("#meterImageInput");
+const imagePreview = document.querySelector("#meterImagePreview");
+
+// استرجاع القراءات المحفوظة
 let meterHistory = JSON.parse(
     localStorage.getItem("meterHistory") || "[]"
 );
 
+// استرجاع آخر قراءة
 const savedReading = localStorage.getItem("meterReading");
 
-// عرض آخر قراءة محفوظة
 if (savedReading !== null && usageValue) {
     usageValue.textContent = savedReading;
 }
@@ -20,8 +25,6 @@ if (savedReading !== null && usageValue) {
 function displayMeterHistory() {
     if (!historyTable) return;
 
-    const historyCount = document.querySelector("#historyCount");
-
     if (historyCount) {
         historyCount.textContent = meterHistory.length + " قراءة";
     }
@@ -29,7 +32,7 @@ function displayMeterHistory() {
     if (meterHistory.length === 0) {
         historyTable.innerHTML = `
             <tr>
-                <td colspan="4">لا توجد قراءات مسجلة حتى الآن</td>
+                <td colspan="5">لا توجد قراءات مسجلة حتى الآن</td>
             </tr>
         `;
         return;
@@ -42,7 +45,8 @@ function displayMeterHistory() {
 
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${item.date}</td>
+            <td>${item.date || "—"}</td>
+            <td>${item.time || "—"}</td>
             <td>${item.reading} كيلو وات</td>
             <td><span class="reading-status">مسجلة</span></td>
         `;
@@ -50,14 +54,15 @@ function displayMeterHistory() {
         historyTable.appendChild(row);
     });
 }
-// تسجيل قراءة جديدة
+
+// حفظ قراءة جديدة
 if (meterButton) {
-    meterButton.addEventListener("click", function (event) {
-        event.preventDefault();
+    meterButton.addEventListener("click", function () {
 
-        const reading = prompt("من فضلك أدخل قراءة عداد الكهرباء:");
+        const reading = readingInput.value.trim();
 
-        if (reading === null || reading.trim() === "") {
+        if (reading === "") {
+            alert("من فضلك أدخل قراءة العداد أولاً.");
             return;
         }
 
@@ -68,18 +73,15 @@ if (meterButton) {
             return;
         }
 
-        // تحديث لوحة التحكم
-        if (usageValue) {
-            usageValue.textContent = number;
-        }
+        const now = new Date();
 
-        // حفظ آخر قراءة
-        localStorage.setItem("meterReading", number);
-
-        // إضافة القراءة للسجل
         const newReading = {
             reading: number,
-            date: new Date().toLocaleString("ar-EG")
+            date: now.toLocaleDateString("ar-EG"),
+            time: now.toLocaleTimeString("ar-EG", {
+                hour: "2-digit",
+                minute: "2-digit"
+            })
         };
 
         meterHistory.unshift(newReading);
@@ -89,9 +91,39 @@ if (meterButton) {
             JSON.stringify(meterHistory)
         );
 
+        localStorage.setItem("meterReading", number);
+
+        if (usageValue) {
+            usageValue.textContent = number;
+        }
+
+        readingInput.value = "";
+
         displayMeterHistory();
 
-        alert("تم حفظ القراءة وإضافتها إلى السجل بنجاح!");
+        alert("تم حفظ القراءة بنجاح!");
+    });
+}
+
+// معاينة صورة العداد
+if (imageInput) {
+    imageInput.addEventListener("change", function () {
+
+        const file = imageInput.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+            alert("من فضلك اختر ملف صورة.");
+            imageInput.value = "";
+            return;
+        }
+
+        const imageURL = URL.createObjectURL(file);
+
+        imagePreview.innerHTML = `
+            <img src="${imageURL}" alt="صورة عداد الكهرباء">
+        `;
     });
 }
 

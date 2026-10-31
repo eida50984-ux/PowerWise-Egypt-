@@ -484,3 +484,190 @@ footer {
         align-items: flex-start;
     }
 }
+/* ===== PowerWise Meter Section ===== */
+
+.meter-panel {
+    padding: 25px;
+}
+
+.meter-title {
+    margin-bottom: 25px;
+}
+
+.meter-title h3 {
+    color: #e8f5ef;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.meter-title p {
+    color: #9aabb0;
+    font-size: 14px;
+}
+
+.meter-input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.meter-input-card {
+    background: #172b35;
+    border: 1px solid #29434b;
+    border-radius: 16px;
+    padding: 22px;
+}
+
+.meter-card-icon {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.meter-input-card h4 {
+    color: #e8f5ef;
+    margin-bottom: 8px;
+}
+
+.meter-input-card p {
+    color: #9aabb0;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+#meterReadingInput {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 14px;
+    border: 1px solid #36535b;
+    border-radius: 9px;
+    background: #10232c;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+
+#meterReadingInput:focus {
+    border-color: #25c58a;
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 100px;
+    border: 1px dashed #25a879;
+    border-radius: 12px;
+    color: #50d6a2;
+    cursor: pointer;
+    background: #102b2b;
+}
+
+.upload-area:hover {
+    background: #173b38;
+}
+
+.upload-area span:first-child {
+    font-size: 28px;
+}
+
+#meterImagePreview {
+    margin-top: 15px;
+}
+
+#meterImagePreview img {
+    max-width: 100%;
+    max-height: 220px;
+    border-radius: 10px;
+}
+
+/* سجل القراءات */
+
+.meter-history {
+    margin-top: 25px;
+    padding: 22px;
+    background: #142630;
+    border: 1px solid #29434b;
+    border-radius: 16px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.history-header h3 {
+    color: #e8f5ef;
+    margin-bottom: 7px;
+}
+
+.history-header p {
+    color: #9aabb0;
+    font-size: 13px;
+}
+
+.history-count {
+    background: #174b3b;
+    color: #5ce0aa;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.meter-history table {
+    width: 100%;
+    min-width: 550px;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.meter-history th {
+    background: #203943;
+    color: #b8d0cc;
+    padding: 15px;
+    font-size: 13px;
+}
+
+.meter-history td {
+    padding: 15px;
+    border-bottom: 1px solid #29434b;
+    color: #e0e9e7;
+    font-size: 14px;
+}
+
+.meter-history tbody tr:hover {
+    background: #1b3540;
+}
+
+.reading-status {
+    display: inline-block;
+    background: #174b3b;
+    color: #5ce0aa;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    .meter-input-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meter-panel {
+        padding: 15px;
+    }
+
+    .history-header {
+        align-items: flex-start;
+    }
+}
